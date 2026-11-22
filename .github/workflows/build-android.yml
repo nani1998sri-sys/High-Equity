@@ -21,8 +21,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Install Android SDK tools
-        uses: android-actions/setup-android@v3
+      # v3 attempted to install obsolete SDK package `tools` and failed before compilation.
+      - name: Set up Android SDK command-line tools
+        uses: android-actions/setup-android@v4
       - name: Install SDK 35
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Set up compatible Gradle 8.11.1
